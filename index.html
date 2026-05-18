@@ -127,42 +127,56 @@
     padding: 40px 20px;
     background-color: transparent; /* Se adapta al fondo beige de tu página */
 }
-
 .caja-valor-pro {
-    background-color: #001f3f; /* Azul Marino */
-    color: #ffffff; /* Texto general en blanco para legibilidad */
+    background-color: #001f3f; /* Fondo Azul Marino original */
+    color: #ffffff; 
     border: 2px solid #f3cf7a; /* Borde Dorado */
-    padding: 25px 20px;
-    border-radius: 15px;
-    width: 280px;
+    padding: 15px 15px; /* Reducido para hacerla más compacta */
+    border-radius: 12px;
+    width: 220px; /* ¡Aquí la hicimos más pequeña! (Antes era 280px) */
     text-align: center;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.4s ease; /* Suaviza la transición de colores */
+    cursor: pointer;
 }
 
-/* Efecto genial: la caja flota un poquito cuando pasas el mouse */
+/* EFECTO MÁGICO: Al tocar o pasar el mouse sobre la caja */
 .caja-valor-pro:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(243, 207, 122, 0.3);
+    background-color: #f3cf7a; /* El fondo cambia a Dorado */
+    color: #001f3f; /* Las letras se vuelven del Azul de tu marca */
+    transform: translateY(-5px); /* Flota un poquito */
+    box-shadow: 0 8px 20px rgba(243, 207, 122, 0.4);
+}
+
+/* Esto asegura que los títulos h3 también cambien a azul al hacer hover */
+.caja-valor-pro:hover h3 {
+    color: #001f3f; 
+}
+
+/* Esto asegura que los párrafos p cambien a azul al hacer hover */
+.caja-valor-pro:hover p {
+    color: #001f3f;
 }
 
 .icono-valor {
-    font-size: 35px;
-    margin-bottom: 15px;
+    font-size: 28px; /* Icono un poco más pequeño */
+    margin-bottom: 10px;
 }
 
 .caja-valor-pro h3 {
-    color: #f3cf7a; /* Título en Dorado */
-    font-size: 18px;
-    margin-bottom: 10px;
+    color: #f3cf7a; /* Dorado original */
+    font-size: 16px; /* Letra del título un toque más pequeña */
+    margin-bottom: 8px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    transition: color 0.4s ease;
 }
 
 .caja-valor-pro p {
-    font-size: 14px;
-    line-height: 1.5;
-    color: #f5f5f5;
+    font-size: 13px; /* Texto descriptivo más compacto */
+    line-height: 1.4;
+    color: #e0e0e0;
+    transition: color 0.4s ease;
 }
     </style>
 </head>
