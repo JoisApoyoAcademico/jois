@@ -21,6 +21,80 @@
     .contenedor-descarga {
     text-align: right;
     padding: 30px 0;
+        /* Sección Comentarios al Final */
+.seccion-comentarios-final {
+    padding: 60px 20px;
+    background-color: #fdfaf6; /* Fondo suave para cerrar la página */
+    text-align: center;
+    border-top: 2px solid #001f3f;
+}
+
+.titulo-comentarios {
+    color: #001f3f;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bloque-testimonios {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+.tarjeta-opinion {
+    background-color: #001f3f;
+    color: #ffffff;
+    border: 2px solid #f3cf7a;
+    padding: 20px;
+    border-radius: 12px;
+    width: 280px;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.tarjeta-opinion p {
+    font-style: italic;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.tarjeta-opinion span {
+    font-weight: bold;
+    color: #f3cf7a;
+    font-size: 12px;
+    display: block;
+    text-align: right;
+}
+
+/* Caja de Texto y Formulario */
+.caja-formulario-opinion {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #001f3f;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.input-opinion, .textarea-opinion {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #001f3f;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.textarea-opinion {
+    height: 90px;
+    resize: none;
+}
 }
 
 .boton-servicios-oro {
@@ -71,13 +145,36 @@
             <label>¿Qué necesitas que hagamos?</label>
             <textarea id="description" required></textarea>
 
-            <label>Adjuntar Foto o Documento</label>
+            <label>Adjuntar Foto o Documento de referencia</label>
             <div class="file-box">
                 <input type="file" id="file" accept="image/*, .pdf, .doc, .docx, .pptx" required>
             </div>
 
             <button type="submit" id="btn">ENVIAR SOLICITUD</button>
         </form>
+        <section class="seccion-comentarios-final">
+    <h2 class="titulo-comentarios">¿Qué opinan nuestros clientes?</h2>
+    
+    <div class="bloque-testimonios">
+        <div class="tarjeta-opinion">
+            <p>"Excelente servicio. Me ayudaron con la maqueta de física y la exposición fue todo un éxito."</p>
+            <span>⭐ Angie (IEICI) </span>
+        </div>
+        
+        <div class="tarjeta-opinion">
+            <p>"Súper recomendados para ensayos. Redacción impecable y entregan puntual."</p>
+            <span>⭐ Carlos M.</span>
+        </div>
+    </div>
+
+    <div class="caja-formulario-opinion">
+        <form id="formComentarios">
+            <input type="text" id="nombre-comentario" placeholder="Tu nombre" class="input-opinion" required>
+            <textarea id="texto-comentario" placeholder="Deja tu comentario o sugerencia de manera amable" class="textarea-opinion" required></textarea>
+            <button type="submit" class="boton-servicios-oro" style="width: 100%;">Enviar Comentario</button>
+        </form>
+    </div>
+</section>
         <div id="status">✅ Solicitud enviada con éxito.</div>
     </div>
 </div>
@@ -123,6 +220,42 @@
             });
         };
     });
+    document.getElementById('formComentarios').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const nombre = document.getElementById('nombre-comentario').value;
+    const mensajeComentario = document.getElementById('texto-comentario').value;
+    
+    // REPLICA AQUÍ TUS MISMOS DATOS DE TELEGRAM DEL FORMULARIO PRINCIPAL
+    const TELEGRAM_BOT_TOKEN = '8601681686:AAH6hWzy5FJG1dLoipFfdKrRhAYX7naGGzA'; 
+    const TELEGRAM_CHAT_ID = '7602622169';     
+    
+    const textoFinal = `💬 *NUEVO COMENTARIO DE CLIENTE*\n\n👤 *Nombre:* ${nombre}\n📝 *Opinión:* ${mensajeComentario}`;
+    
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    
+    fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: textoFinal,
+            parse_mode: 'Markdown'
+        })
+    })
+    .then(response => {
+        if(response.ok) {
+            alert('¡Muchas gracias por tu comentario amable! Ha sido enviado con éxito.');
+            document.getElementById('formComentarios').reset();
+        } else {
+            alert('Hubo un inconveniente al enviar. Inténtalo de nuevo.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error de conexión al servidor.');
+    });
+});
 </script>
 
 </body>
