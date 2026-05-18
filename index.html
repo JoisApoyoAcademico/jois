@@ -118,6 +118,52 @@
     box-shadow: 0 6px 12px rgba(243, 207, 122, 0.4);
     transform: translateY(-2px);
 }
+        /* Estilos para las 3 Cajas de Valores */
+.seccion-valores-jois {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    background-color: transparent; /* Se adapta al fondo beige de tu página */
+}
+
+.caja-valor-pro {
+    background-color: #001f3f; /* Azul Marino */
+    color: #ffffff; /* Texto general en blanco para legibilidad */
+    border: 2px solid #f3cf7a; /* Borde Dorado */
+    padding: 25px 20px;
+    border-radius: 15px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto genial: la caja flota un poquito cuando pasas el mouse */
+.caja-valor-pro:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(243, 207, 122, 0.3);
+}
+
+.icono-valor {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.caja-valor-pro h3 {
+    color: #f3cf7a; /* Título en Dorado */
+    font-size: 18px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.caja-valor-pro p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #f5f5f5;
+}
     </style>
 </head>
 <body>
@@ -135,6 +181,25 @@
         </button>
     </a>
 </div>
+        <section class="seccion-valores-jois">
+    <div class="caja-valor-pro">
+        <div class="icono-valor">🛡️</div>
+        <h3>PUNTUALIDAD</h3>
+        <p>Entregas garantizadas en la fecha acordada para que nunca te retrases en tus clases.</p>
+    </div>
+    
+    <div class="caja-valor-pro">
+        <div class="icono-valor">✨</div>
+        <h3>CALIDAD</h3>
+        <p>Proyectos auténticos, sin plagio, con excelente redacción y ortografía impecable.</p>
+    </div>
+    
+    <div class="caja-valor-pro">
+        <div class="icono-valor">🤝</div>
+        <h3>CONFIANZA</h3>
+        <p>Tu información y tus trabajos están seguros bajo total reserva y confidencialidad.</p>
+    </div>
+</section>
         <form id="orderForm">
             <label>Nombre</label>
             <input type="text" id="name" required>
@@ -158,12 +223,12 @@
     <div class="bloque-testimonios">
         <div class="tarjeta-opinion">
             <p>"Excelente servicio. Me ayudaron con la maqueta de física y la exposición fue todo un éxito."</p>
-            <span>⭐ Angie (IEICI) </span>
+            <span> Angie (IEICI) </span>
         </div>
         
         <div class="tarjeta-opinion">
             <p>"Súper recomendados para ensayos. Redacción impecable y entregan puntual."</p>
-            <span>⭐ Carlos M.</span>
+            <span> Carlos M.</span>
         </div>
     </div>
 
