@@ -6,262 +6,489 @@
     <title>Joi's Apoyo Académico</title>
     <link rel="icon" type="image/jpg" href="Logo Joi's.jpg">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f9; display: flex; justify-content: center; padding: 20px; margin: 0; }
-        .card { background: white; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); max-width: 500px; width: 100%; border-top: 15px solid #2c3e50; overflow: hidden; }
-        .content { padding: 30px; }
-        h1 { text-align: center; color: #2c3e50; font-size: 26px; margin-top: 0; }
-        .subtitle { text-align: center; color: #7f8c8d; font-style: italic; font-size: 13px; line-height: 1.5; margin-bottom: 30px; }
-        label { display: block; margin-top: 15px; font-weight: 600; color: #34495e; }
-        input, textarea { width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #ced4da; border-radius: 8px; box-sizing: border-box; font-size: 15px; background: #fff; }
-        textarea { height: 100px; resize: none; }
-        .file-box { border: 1px solid #ced4da; padding: 10px; border-radius: 8px; margin-top: 8px; background: #fafafa; }
-        button { width: 100%; padding: 15px; background-color: #2c3e50; color: white; border: none; border-radius: 8px; margin-top: 25px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
-        button:disabled { background-color: #95a5a6; }
-        #status { display: none; text-align: center; margin-top: 20px; color: #27ae60; font-weight: bold; padding: 10px; background: #e8f5e9; border-radius: 8px; }
-    .contenedor-descarga {
-    text-align: right;
-    padding: 30px 0;
-        /* Sección Comentarios al Final */
-.seccion-comentarios-final {
-    padding: 60px 20px;
-    background-color: #fdfaf6; /* Fondo suave para cerrar la página */
-    text-align: center;
-    border-top: 2px solid #001f3f;
-}
+        /* Estilos Globales - Pantalla Completa Responsiva */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
 
-.titulo-comentarios {
-    color: #001f3f;
-    font-size: 24px;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #fcf8f2; /* Fondo beige premium muy sutil */
+            margin: 0; 
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            color: #333333;
+        }
 
-.bloque-testimonios {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 35px;
-}
+        /* Secciones fluidas a lo ancho de la pantalla */
+        section {
+            width: 100%;
+            padding: 50px 10%;
+            display: block;
+        }
 
-.tarjeta-opinion {
-    background-color: #001f3f;
-    color: #ffffff;
-    border: 2px solid #f3cf7a;
-    padding: 20px;
-    border-radius: 12px;
-    width: 280px;
-    text-align: left;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
+        @media (max-width: 768px) {
+            section {
+                padding: 40px 20px; /* Menos margen lateral en celulares */
+            }
+        }
 
-.tarjeta-opinion p {
-    font-style: italic;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
+        /* Encabezado */
+        header {
+            background-color: #001f3f; /* Azul Marino */
+            color: #ffffff;
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 4px solid #f3cf7a; /* Línea Dorada */
+        }
 
-.tarjeta-opinion span {
-    font-weight: bold;
-    color: #f3cf7a;
-    font-size: 12px;
-    display: block;
-    text-align: right;
-}
+        h1 { 
+            font-size: 32px; 
+            margin: 0 0 15px 0; 
+            letter-spacing: 1px;
+            color: #f3cf7a; /* Título Dorado */
+            text-transform: uppercase;
+        }
 
-/* Caja de Texto y Formulario */
-.caja-formulario-opinion {
-    max-width: 500px;
-    margin: 0 auto;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #001f3f;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
+        .subtitle { 
+            max-width: 700px;
+            margin: 0 auto;
+            color: #ffffff; 
+            font-style: italic; 
+            font-size: 15px; 
+            line-height: 1.6; 
+        }
 
-.input-opinion, .textarea-opinion {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #001f3f;
-    border-radius: 8px;
-    box-sizing: border-box;
-    font-family: inherit;
-}
+        /* Contenedor del Botón de Descarga */
+        .contenedor-descarga {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #fdfaf6;
+        }
 
-.textarea-opinion {
-    height: 90px;
-    resize: none;
-}
-}
+        .boton-servicios-oro {
+            background-color: #001f3f;
+            color: #f3cf7a;
+            border: 2px solid #f3cf7a;
+            padding: 15px 35px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-.boton-servicios-oro {
-    background-color: #001f3f; /* Azul Marino Profundo */
-    color: #f3cf7a; /* Dorado suave del logo */
-    border: 2px solid #f3cf7a; /* Borde Dorado */
-    padding: 15px 30px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+        .boton-servicios-oro:hover {
+            background-color: #f3cf7a;
+            color: #001f3f;
+            box-shadow: 0 6px 15px rgba(243, 207, 122, 0.4);
+            transform: translateY(-2px);
+        }
 
-.boton-servicios-oro:hover {
-    background-color: #f3cf7a; /* Al pasar el mouse, se vuelve dorado */
-    color: #001f3f; /* Y la letra azul */
-    box-shadow: 0 6px 12px rgba(243, 207, 122, 0.4);
-    transform: translateY(-2px);
-}
-        /* Estilos para las 3 Cajas de Valores */
-.seccion-valores-jois {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-    padding: 40px 20px;
-    background-color: transparent; /* Se adapta al fondo beige de tu página */
-}
-.caja-valor-pro {
-    background-color: #001f3f; /* Fondo Azul Marino original */
-    color: #ffffff; 
-    border: 2px solid #f3cf7a; /* Borde Dorado */
-    padding: 15px 15px; /* Reducido para hacerla más compacta */
-    border-radius: 12px;
-    width: 220px; /* ¡Aquí la hicimos más pequeña! (Antes era 280px) */
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: all 0.4s ease; /* Suaviza la transición de colores */
-    cursor: pointer;
-}
+        /* Estilos para las 3 Cajas de Valores Horizontal */
+        .seccion-valores-jois {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 25px;
+            flex-wrap: wrap;
+            background-color: transparent;
+        }
 
-/* EFECTO MÁGICO: Al tocar o pasar el mouse sobre la caja */
-.caja-valor-pro:hover {
-    background-color: #f3cf7a; /* El fondo cambia a Dorado */
-    color: #001f3f; /* Las letras se vuelven del Azul de tu marca */
-    transform: translateY(-5px); /* Flota un poquito */
-    box-shadow: 0 8px 20px rgba(243, 207, 122, 0.4);
-}
+        .caja-valor-pro {
+            background-color: #001f3f;
+            color: #ffffff; 
+            border: 2px solid #f3cf7a;
+            padding: 25px 20px;
+            border-radius: 12px;
+            flex: 1;
+            min-width: 260px;
+            max-width: 320px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
 
-/* Esto asegura que los títulos h3 también cambien a azul al hacer hover */
-.caja-valor-pro:hover h3 {
-    color: #001f3f; 
-}
+        .caja-valor-pro:hover {
+            background-color: #f3cf7a; /* Invierte a Fondo Dorado */
+            color: #001f3f; /* Letras Azules */
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(243, 207, 122, 0.4);
+        }
 
-/* Esto asegura que los párrafos p cambien a azul al hacer hover */
-.caja-valor-pro:hover p {
-    color: #001f3f;
-}
+        .caja-valor-pro:hover h3, 
+        .caja-valor-pro:hover p {
+            color: #001f3f;
+        }
 
-.icono-valor {
-    font-size: 28px; /* Icono un poco más pequeño */
-    margin-bottom: 10px;
-}
+        .icono-valor {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
 
-.caja-valor-pro h3 {
-    color: #f3cf7a; /* Dorado original */
-    font-size: 16px; /* Letra del título un toque más pequeña */
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: color 0.4s ease;
-}
+        .caja-valor-pro h3 {
+            color: #f3cf7a;
+            font-size: 18px;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.4s ease;
+        }
 
-.caja-valor-pro p {
-    font-size: 13px; /* Texto descriptivo más compacto */
-    line-height: 1.4;
-    color: #e0e0e0;
-    transition: color 0.4s ease;
-}
+        .caja-valor-pro p {
+            font-size: 13.5px;
+            line-height: 1.5;
+            margin: 0;
+            color: #e0e0e0;
+            transition: color 0.4s ease;
+        }
+
+        /* Formulario de Solicitud Estilizado */
+        .seccion-formulario {
+            background-color: #ffffff;
+            border-top: 1px solid #e3daf2;
+            border-bottom: 1px solid #e3daf2;
+        }
+
+        .formulario-central {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .seccion-formulario h2 {
+            text-align: center;
+            color: #001f3f;
+            margin: 0 0 30px 0;
+            text-transform: uppercase;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        label { 
+            display: block; 
+            margin-top: 20px; 
+            font-weight: 600; 
+            color: #001f3f; 
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        input[type="text"], 
+        input[type="tel"], 
+        textarea { 
+            width: 100%; 
+            padding: 14px; 
+            margin-top: 8px; 
+            border: 1px solid #001f3f; 
+            border-radius: 8px; 
+            font-size: 15px; 
+            background: #fafafa; 
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #f3cf7a;
+            background: #ffffff;
+            box-shadow: 0 0 8px rgba(243, 207, 122, 0.3);
+        }
+
+        textarea { height: 110px; resize: none; }
+
+        .file-box { 
+            border: 2px dashed #001f3f; 
+            padding: 15px; 
+            border-radius: 8px; 
+            margin-top: 8px; 
+            background: #fafafa; 
+            text-align: center;
+        }
+
+        .btn-enviar-pedido { 
+            width: 100%; 
+            padding: 16px; 
+            background-color: #001f3f; 
+            color: #f3cf7a; 
+            border: 2px solid #001f3f; 
+            border-radius: 8px; 
+            margin-top: 30px; 
+            font-weight: bold; 
+            font-size: 16px;
+            cursor: pointer; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            transition: all 0.3s ease;
+        }
+
+        .btn-enviar-pedido:hover {
+            background-color: #f3cf7a;
+            color: #001f3f;
+            border-color: #f3cf7a;
+        }
+
+        .btn-enviar-pedido:disabled { 
+            background-color: #95a5a6; 
+            border-color: #95a5a6;
+            color: #ffffff;
+            cursor: not-allowed;
+        }
+
+        #status { 
+            display: none; 
+            text-align: center; 
+            margin-top: 25px; 
+            color: #27ae60; 
+            font-weight: bold; 
+            padding: 15px; 
+            background: #e8f5e9; 
+            border-radius: 8px; 
+            border: 1px solid #27ae60;
+        }
+
+        /* Sección Comentarios Acordeón Desplegable */
+        .seccion-comentarios-final {
+            background-color: #fdfaf6;
+            text-align: center;
+        }
+
+        .contenedor-acordeon-comentarios {
+            margin: 0 auto;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .acordeon-comentarios {
+            background-color: #ffffff;
+            border: 2px solid #001f3f;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .barra-desplegable-comentarios {
+            padding: 18px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #001f3f; 
+            color: #f3cf7a; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .barra-desplegable-comentarios::-webkit-details-marker {
+            display: none;
+        }
+
+        .acordeon-comentarios[open] .flecha-indicadora {
+            transform: rotate(180deg);
+        }
+
+        .flecha-indicadora {
+            transition: transform 0.3s ease;
+            font-size: 12px;
+        }
+
+        .interior-desplegable-comentarios {
+            padding: 25px 20px;
+            background-color: #fdfaf6;
+        }
+
+        /* Tarjetas de opinión real internas */
+        .cuadro-opinion-real {
+            background-color: #ffffff;
+            border-left: 4px solid #f3cf7a; 
+            border-top: 1px solid #e0e0e0;
+            border-right: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px;
+            border-radius: 4px 8px 8px 4px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .texto-opinion {
+            font-style: italic;
+            font-size: 14px;
+            color: #333333;
+            margin: 0 0 8px 0;
+            line-height: 1.4;
+        }
+
+        .autor-opinion {
+            font-weight: bold;
+            color: #001f3f;
+            font-size: 11px;
+            display: block;
+            text-align: right;
+        }
+
+        /* Caja del Formulario de Opinión */
+        .caja-formulario-opinion {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px dashed #001f3f;
+            margin-top: 25px;
+        }
+
+        .input-opinion, .textarea-opinion {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #001f3f;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 14px;
+            background-color: #fafafa;
+        }
+
+        .textarea-opinion {
+            height: 80px;
+            resize: none;
+        }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div class="content">
+    <header>
         <h1>Joi's Apoyo Académico</h1>
         <p class="subtitle">
             "Esto es manejado por Asistentes de sistemas que te contactarán una vez envíes tu solicitud de servicio, por ahora, nos ubicamos solamente en QUIBDÓ-CHOCÓ, COLOMBIA para trabajos en físico."
         </p>
-        <div class="contenedor-descarga">
-    <a href="jois-apoyo-academico-servicios.jpg" download="Jois-Apoyo-Academico-Servicios.jpg">
-        <button class="boton-servicios-oro">
-            <span class="icono">📋</span> DESCARGAR PORTAFOLIO DE SERVICIOS
-        </button>
-    </a>
-</div>
-        <section class="seccion-valores-jois">
-    <div class="caja-valor-pro">
-        <div class="icono-valor">🛡️</div>
-        <h3>PUNTUALIDAD</h3>
-        <p>Entregas garantizadas en la fecha acordada para que nunca te retrases en tus clases.</p>
-    </div>
-    
-    <div class="caja-valor-pro">
-        <div class="icono-valor">✨</div>
-        <h3>CALIDAD</h3>
-        <p>Proyectos auténticos, sin plagio, con excelente redacción y ortografía impecable.</p>
-    </div>
-    
-    <div class="caja-valor-pro">
-        <div class="icono-valor">🤝</div>
-        <h3>CONFIANZA</h3>
-        <p>Tu información y tus trabajos están seguros bajo total reserva y confidencialidad.</p>
-    </div>
-</section>
-        <form id="orderForm">
-            <label>Nombre</label>
-            <input type="text" id="name" required>
+    </header>
 
-            <label>WhatsApp (Ej: 57300...)</label>
-            <input type="tel" id="phone" required>
+    <div class="contenedor-descarga">
+        <a href="jois-apoyo-academico-servicios.jpg" download="Jois-Apoyo-Academico-Servicios.jpg">
+            <button class="boton-servicios-oro">
+                <span class="icono">📋</span> DESCARGAR PORTAFOLIO DE SERVICIOS
+            </button>
+        </a>
+    </div>
 
-            <label>¿Qué necesitas que hagamos?</label>
-            <textarea id="description" required></textarea>
-
-            <label>Adjuntar Foto o Documento de referencia</label>
-            <div class="file-box">
-                <input type="file" id="file" accept="image/*, .pdf, .doc, .docx, .pptx" required>
+    <section>
+        <div class="seccion-valores-jois">
+            <div class="caja-valor-pro">
+                <div class="icono-valor">🛡️</div>
+                <h3>PUNTUALIDAD</h3>
+                <p>Entregas garantizadas en la fecha acordada para que nunca te retrases en tus clases.</p>
             </div>
-
-            <button type="submit" id="btn">ENVIAR SOLICITUD</button>
-        </form>
-        <section class="seccion-comentarios-final">
-    <h2 class="titulo-comentarios">¿Qué opinan nuestros clientes?</h2>
-    
-    <div class="bloque-testimonios">
-        <div class="tarjeta-opinion">
-            <p>"Excelente servicio. Me ayudaron con la maqueta de física y la exposición fue todo un éxito."</p>
-            <span> Angie (IEICI) </span>
+            
+            <div class="caja-valor-pro">
+                <div class="icono-valor">✨</div>
+                <h3>CALIDAD</h3>
+                <p>Proyectos auténticos, sin plagio, con excelente redacción y ortografía impecable.</p>
+            </div>
+            
+            <div class="caja-valor-pro">
+                <div class="icono-valor">🤝</div>
+                <h3>CONFIANZA</h3>
+                <p>Tu información y tus trabajos están seguros bajo total reserva y confidencialidad.</p>
+            </div>
         </div>
-        
-        <div class="tarjeta-opinion">
-            <p>"Súper recomendados para ensayos. Redacción impecable y entregan puntual."</p>
-            <span> Carlos M.</span>
-        </div>
-    </div>
+    </section>
 
-    <div class="caja-formulario-opinion">
-        <form id="formComentarios">
-            <input type="text" id="nombre-comentario" placeholder="Tu nombre" class="input-opinion" required>
-            <textarea id="texto-comentario" placeholder="Deja tu comentario o sugerencia de manera amable" class="textarea-opinion" required></textarea>
-            <button type="submit" class="boton-servicios-oro" style="width: 100%;">Enviar Comentario</button>
-        </form>
-    </div>
-</section>
-        <div id="status">✅ Solicitud enviada con éxito.</div>
-    </div>
-</div>
+    <section class="seccion-formulario">
+        <div class="formulario-central">
+            <h2>Solicitar Servicio Académico</h2>
+            <form id="orderForm">
+                <label>Nombre Completo</label>
+                <input type="text" id="name" required>
+
+                <label>WhatsApp (Ej: 57300...)</label>
+                <input type="tel" id="phone" required>
+
+                <label>¿Qué necesitas que hagamos?</label>
+                <textarea id="description" placeholder="Describe detalladamente tu tarea, taller o proyecto..." required></textarea>
+
+                <label>Adjuntar Foto o Documento de referencia</label>
+                <div class="file-box">
+                    <input type="file" id="file" accept="image/*, .pdf, .doc, .docx, .pptx" required>
+                </div>
+
+                <button type="submit" id="btn" class="btn-enviar-pedido">ENVIAR SOLICITUD</button>
+            </form>
+            <div id="status">✅ Solicitud enviada con éxito.</div>
+        </div>
+    </section>
+
+    <section class="seccion-comentarios-final">
+        <div class="contenedor-acordeon-comentarios">
+            <details class="acordeon-comentarios">
+                <summary class="barra-desplegable-comentarios">
+                    💬 ¿Qué opinan nuestros clientes? <span class="flecha-indicadora">▼</span>
+                </summary>
+                
+                <div class="interior-desplegable-comentarios">
+                    <div class="cuadro-opinion-real">
+                        <p class="texto-opinion">"Excelente servicio. Me ayudaron con la maqueta de física y la exposición fue todo un éxito."</p>
+                        <span class="autor-opinion">⭐ Angie (IEICI)</span>
+                    </div>
+                    
+                    <div class="cuadro-opinion-real">
+                        <p class="texto-opinion">"Súper recomendados para ensayos. Redacción impecable y entregan puntual."</p>
+                        <span class="autor-opinion">⭐ Carlos M.</span>
+                    </div>
+
+                    <div class="caja-formulario-opinion">
+                        <form id="formComentarios">
+                            <input type="text" id="nombre-comentario" placeholder="Tu nombre" class="input-opinion" required>
+                            <textarea id="texto-comentario" placeholder="Deja tu comentario o sugerencia de manera amable" class="textarea-opinion" required></textarea>
+                            <button type="submit" class="boton-servicios-oro" style="width: 100%;">Enviar Comentario</button>
+                        </form>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </section>
 
 <script>
-    // PEGA AQUÍ LA NUEVA URL QUE COPIASTE EN EL PASO 2
+    // URL de Google Apps Script para el formulario principal
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwNyE7HTMEfoEGfPlSTN4l7B9DXjX-KpKA4yupVUHCz25lbFm7Kj6-rnxX_Whnk-_Vccw/exec";
 
+    // ==========================================
+    // CONFIGURACIÓN CENTRALIZADA DE TELEGRAM
+    // ==========================================
+    const TELEGRAM_BOT_TOKEN = '8601681686:AAH6hWzy5FJG1dLoipFfdKrRhAYX7naGGzA'; 
+    
+    // Lista de IDs de chat para envíos múltiples (Tú y tu colega)
+    const TELEGRAM_CHAT_IDS = [
+        '7602622169', // Tu Chat ID actual
+        'AQUÍ_PONES_EL_CHAT_ID_DE_TU_COLEGA' // Cuando te pase su dato, borra este texto y pon su número aquí adentro
+    ];
+
+    // Función reutilizable para enviar mensajes a múltiples destinatarios en Telegram
+    function enviarMensajeTelegram(texto) {
+        // Recorre la lista de IDs y le manda el mensaje a cada uno
+        TELEGRAM_CHAT_IDS.forEach(chatId => {
+            // Solo envía si el espacio no tiene el texto por defecto
+            if (chatId && !chatId.includes('AQUÍ_PONES_EL_CHAT_ID')) {
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: texto,
+                        parse_mode: 'Markdown'
+                    })
+                }).catch(err => console.error('Error enviando a Telegram al ID:', chatId, err));
+            }
+        });
+    }
+
+    // Lógica del Formulario de Pedidos Principal
     document.getElementById('orderForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('btn');
@@ -271,24 +498,33 @@
         btn.disabled = true;
         btn.innerText = "PROCESANDO...";
 
+        const nombreCliente = document.getElementById('name').value;
+        const telefonoCliente = document.getElementById('phone').value;
+        const descPedido = document.getElementById('description').value;
+
         const reader = new FileReader();
         reader.readAsDataURL(file);
         
         reader.onload = function() {
             const data = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                description: document.getElementById('description').value,
+                name: nombreCliente,
+                phone: telefonoCliente,
+                description: descPedido,
                 fileName: file.name,
                 fileType: file.type,
                 fileData: reader.result
             };
 
+            // Enviar a Google Sheets
             fetch(WEB_APP_URL, {
                 method: 'POST',
                 mode: 'no-cors',
                 body: JSON.stringify(data)
             }).then(() => {
+                // Notificación por Telegram a ambos socios tras guardarse en la Sheet
+                const textoTelegramPedido = `📥 *NUEVA SOLICITUD DE SERVICIO*\n\n👤 *Nombre:* ${nombreCliente}\n📱 *WhatsApp:* ${telefonoCliente}\n📝 *Descripción:* ${descPedido}\n📎 *Archivo:* ${file.name}`;
+                enviarMensajeTelegram(textoTelegramPedido);
+
                 document.getElementById('orderForm').reset();
                 document.getElementById('status').style.display = "block";
                 btn.innerText = "ENVIADO";
@@ -299,45 +535,23 @@
             });
         };
     });
+
+    // Lógica del Formulario de Comentarios Amables
     document.getElementById('formComentarios').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const nombre = document.getElementById('nombre-comentario').value;
-    const mensajeComentario = document.getElementById('texto-comentario').value;
-    
-    // REPLICA AQUÍ TUS MISMOS DATOS DE TELEGRAM DEL FORMULARIO PRINCIPAL
-    const TELEGRAM_BOT_TOKEN = '8601681686:AAH6hWzy5FJG1dLoipFfdKrRhAYX7naGGzA'; 
-    const TELEGRAM_CHAT_ID = '7602622169';     
-    
-    const textoFinal = `💬 *NUEVO COMENTARIO DE CLIENTE*\n\n👤 *Nombre:* ${nombre}\n📝 *Opinión:* ${mensajeComentario}`;
-    
-    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-    
-    fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: textoFinal,
-            parse_mode: 'Markdown'
-        })
-    })
-    .then(response => {
-        if(response.ok) {
-            alert('¡Muchas gracias por tu comentario amable! Ha sido enviado con éxito.');
-            document.getElementById('formComentarios').reset();
-        } else {
-            alert('Hubo un inconveniente al enviar. Inténtalo de nuevo.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error de conexión al servidor.');
+        e.preventDefault();
+        
+        const nombreComentador = document.getElementById('nombre-comentario').value;
+        const mensajeComentario = document.getElementById('texto-comentario').value;
+        
+        const textoTelegramComentario = `💬 *NUEVO COMENTARIO DE CLIENTE*\n\n👤 *Nombre:* ${nombreComentador}\n📝 *Opinión:* ${mensajeComentario}`;
+        
+        // Ejecuta el envío a ambos canales
+        enviarMensajeTelegram(textoTelegramComentario);
+        
+        alert('¡Muchas gracias por tu comentario amable! Ha sido enviado con éxito.');
+        document.getElementById('formComentarios').reset();
     });
-});
 </script>
 
 </body>
-
 </html>
-
